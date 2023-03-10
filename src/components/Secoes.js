@@ -1,11 +1,19 @@
 import styled from "styled-components"
+import { useNavigate } from "react-router-dom"
+
 
 export default function Secoes(props) {
+    const navigate = useNavigate()
+
+    function escolherAssento(id) {
+        navigate(`/assentos/:id`)
+    }
+
     return (
         <SessionContainer>
             {props.weekday} - {props.date}
             <ButtonsContainer>
-                {props.showtimes.map(showtime => <button>{showtime.name}</button>)}
+                {props.showtimes.map(showtime => <button key={showtime.id} onClick={() => escolherAssento(showtime.id)} >{showtime.name}</button>)}
             </ButtonsContainer>
         </SessionContainer>
     )

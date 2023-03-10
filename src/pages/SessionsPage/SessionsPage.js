@@ -9,25 +9,31 @@ import Secoes from "../../components/Secoes";
 export default function SessionsPage() {
 
     const params = useParams();
-    const [horarios, setHorarios] = React.useState([]);
-    const [filme, setFilme] = React.useState();
+    const [filme, setFilme] = React.useState(null);
     console.log(filme)
 
     useEffect(() => {
         const requisicao = axios.get(`https://mock-api.driven.com.br/api/v8/cineflex/movies/${params.idFilme}/showtimes`);
 
         requisicao.then(resposta => {
-            setHorarios(resposta.data.days)
             setFilme(resposta.data)
         });
+
     }, []);
+
+    // Caso o react tente carregar o componente e nao ache, ele crasha
+    if (filme === null) {
+        return (
+            <p>Carregando</p>
+        )
+    }
 
     return (
         <PageContainer>
             Selecione o horário
             <div>
 
-                {horarios.map(horario => <Secoes key={horario.id} id={horario.id} weekday={horario.weekday} showtimes={horario.showtimes} date={horario.date} />)}
+                {filme.days.map(horario => <Secoes key={horario.id} id={horario.id} weekday={horario.weekday} showtimes={horario.showtimes} date={horario.date} />)}
 
             </div>
 
