@@ -10,13 +10,15 @@ export default function SessionsPage() {
 
     const params = useParams();
     const [horarios, setHorarios] = React.useState([]);
-    console.log(horarios)
+    const [filme, setFilme] = React.useState();
+    console.log(filme)
 
     useEffect(() => {
         const requisicao = axios.get(`https://mock-api.driven.com.br/api/v8/cineflex/movies/${params.idFilme}/showtimes`);
 
         requisicao.then(resposta => {
             setHorarios(resposta.data.days)
+            setFilme(resposta.data)
         });
     }, []);
 
@@ -31,10 +33,10 @@ export default function SessionsPage() {
 
             <FooterContainer>
                 <div>
-                    <img src={"https://br.web.img2.acsta.net/pictures/22/05/16/17/59/5165498.jpg"} alt="poster" />
+                    <img src={filme.posterURL} alt="poster" />
                 </div>
                 <div>
-                    <p>Tudo em todo lugar ao mesmo tempo</p>
+                    <p>{filme.title}</p>
                 </div>
             </FooterContainer>
 
