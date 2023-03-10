@@ -23,7 +23,7 @@ export default function HomePage() {
             Selecione o filme
 
             <ListContainer>
-                {listaFilmes.map(filme => <ContainerFilme key={filme.id} imagem={filme.posterURL} />)}
+                {listaFilmes.map(filme => <ContainerFilme id={filme.id} key={filme.id} imagem={filme.posterURL} />)}
             </ListContainer>
 
         </PageContainer>

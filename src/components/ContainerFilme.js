@@ -1,10 +1,13 @@
 import styled from "styled-components";
+import { Link, useParams } from "react-router-dom"
 
 export default function ContainerFilme(props) {
     return (
-        <MovieContainer>
-            <img src={props.imagem} alt="poster" />
-        </MovieContainer>
+        <Link to={`/sessoes/${props.id}`}>
+            <MovieContainer>
+                <img src={props.imagem} alt="poster" />
+            </MovieContainer>
+        </Link>
     )
 }
 
