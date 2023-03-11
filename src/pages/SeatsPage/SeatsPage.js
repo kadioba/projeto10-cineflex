@@ -1,18 +1,25 @@
 import styled from "styled-components"
-import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import React from "react";
 import Assento from "../../components/Assento";
+import { Link, useParams } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
+
+
 
 
 export default function SeatsPage() {
 
     const params = useParams();
     const [sessao, setSessao] = React.useState(null)
-    const [estadoAssento, setEstadoAssento] = React.useState()
     const [assentoSelecionado, setAssentoSelecionado] = React.useState([])
+    const [nome, setNome] = useState("");
+    const [cpf, setCpf] = useState("");
     console.log(assentoSelecionado)
+
+    const navigate = useNavigate()
+
 
     useEffect(() => {
         const requisicao = axios.get(`https://mock-api.driven.com.br/api/v8/cineflex/showtimes/${params.idSessao}/seats`);
@@ -23,6 +30,21 @@ export default function SeatsPage() {
         });
 
     }, []);
+
+    function reservarAssentos(event) {
+        event.preventDefault();
+
+        console.log("Entrou na funcao")
+
+        const requisicao = axios.post("https://mock-api.driven.com.br/api/v8/cineflex/seats/book-many", {
+            ids: assentoSelecionado,
+            name: nome,
+            cpf: cpf
+        })
+
+        requisicao.then(() => navigate("/sucesso"))
+
+    }
 
     if (sessao === null) {
         return (
@@ -54,13 +76,15 @@ export default function SeatsPage() {
             </CaptionContainer>
 
             <FormContainer>
-                Nome do Comprador:
-                <input placeholder="Digite seu nome..." />
+                <form onSubmit={reservarAssentos}>
+                    Nome do Comprador:
+                    <input onChange={e => setNome(e.target.value)} type="text" value={nome} />
 
-                CPF do Comprador:
-                <input placeholder="Digite seu CPF..." />
+                    CPF do Comprador:
+                    <input onChange={e => setCpf(e.target.value)} type="text" value={cpf} />
 
-                <button>Reservar Assento(s)</button>
+                    <button type="submit" >Reservar Assento(s)</button>
+                </form>
             </FormContainer>
 
             <FooterContainer>
