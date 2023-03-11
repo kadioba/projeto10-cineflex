@@ -6,7 +6,7 @@ export default function Secoes(props) {
     const navigate = useNavigate()
 
     function escolherAssento(id) {
-        navigate(`/assentos/:id`)
+        navigate(`/assentos/${id}`)
     }
 
     return (

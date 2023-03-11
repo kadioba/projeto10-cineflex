@@ -1,17 +1,41 @@
 import styled from "styled-components"
+import { useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import React from "react";
+import Assento from "../../components/Assento";
+
 
 export default function SeatsPage() {
+
+    const params = useParams();
+    const [sessao, setSessao] = React.useState(null)
+    const [estadoAssento, setEstadoAssento] = React.useState()
+    const [assentoSelecionado, setAssentoSelecionado] = React.useState([])
+    console.log(assentoSelecionado)
+
+    useEffect(() => {
+        const requisicao = axios.get(`https://mock-api.driven.com.br/api/v8/cineflex/showtimes/${params.idSessao}/seats`);
+
+        requisicao.then(resposta => {
+            setSessao(resposta.data)
+
+        });
+
+    }, []);
+
+    if (sessao === null) {
+        return (
+            <h1>Carregando</h1>
+        )
+    }
 
     return (
         <PageContainer>
             Selecione o(s) assento(s)
 
             <SeatsContainer>
-                <SeatItem>01</SeatItem>
-                <SeatItem>02</SeatItem>
-                <SeatItem>03</SeatItem>
-                <SeatItem>04</SeatItem>
-                <SeatItem>05</SeatItem>
+                {sessao.seats.map(assento => <Assento assentoSelecionado={assentoSelecionado} setAssentoSelecionado={setAssentoSelecionado} numero={assento.name} id={assento.id} isAvailable={assento.isAvailable} />)}
             </SeatsContainer>
 
             <CaptionContainer>
@@ -112,19 +136,7 @@ const CaptionItem = styled.div`
     align-items: center;
     font-size: 12px;
 `
-const SeatItem = styled.div`
-    border: 1px solid blue;         // Essa cor deve mudar
-    background-color: lightblue;    // Essa cor deve mudar
-    height: 25px;
-    width: 25px;
-    border-radius: 25px;
-    font-family: 'Roboto';
-    font-size: 11px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 5px 3px;
-`
+
 const FooterContainer = styled.div`
     width: 100%;
     height: 120px;
