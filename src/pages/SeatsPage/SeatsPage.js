@@ -5,18 +5,21 @@ import React from "react";
 import Assento from "../../components/Assento";
 import { Link, useParams } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
+import Footer from "../../components/Footer";
 
 
 
 
-export default function SeatsPage() {
+export default function SeatsPage(props) {
 
     const params = useParams();
     const [sessao, setSessao] = React.useState(null)
     const [assentoSelecionado, setAssentoSelecionado] = React.useState([])
+    const [numeroAssentoSelecionado, setNumeroAssentoSelecionado] = React.useState([])
     const [nome, setNome] = useState("");
     const [cpf, setCpf] = useState("");
-    console.log(assentoSelecionado)
+
+    console.log(sessao)
 
     const navigate = useNavigate()
 
@@ -42,7 +45,17 @@ export default function SeatsPage() {
             cpf: cpf
         })
 
-        requisicao.then(() => navigate("/sucesso"))
+        requisicao.then((resposta) => {
+            props.setDadosReserva({
+                nome: nome,
+                cpf: cpf,
+                assentos: numeroAssentoSelecionado,
+                dia: sessao.day.date,
+                hora: sessao.name,
+                filme: sessao.movie.title
+            })
+            navigate("/sucesso")
+        })
 
     }
 
@@ -57,7 +70,7 @@ export default function SeatsPage() {
             Selecione o(s) assento(s)
 
             <SeatsContainer>
-                {sessao.seats.map(assento => <Assento assentoSelecionado={assentoSelecionado} setAssentoSelecionado={setAssentoSelecionado} numero={assento.name} id={assento.id} isAvailable={assento.isAvailable} />)}
+                {sessao.seats.map(assento => <Assento setNumeroAssentoSelecionado={setNumeroAssentoSelecionado} numeroAssentoSelecionado={numeroAssentoSelecionado} assentoSelecionado={assentoSelecionado} setAssentoSelecionado={setAssentoSelecionado} numero={assento.name} id={assento.id} isAvailable={assento.isAvailable} />)}
             </SeatsContainer>
 
             <CaptionContainer>
@@ -87,7 +100,12 @@ export default function SeatsPage() {
                 </form>
             </FormContainer>
 
-            <FooterContainer>
+            <Footer posterURL={sessao.movie.posterURL}>
+                <p>{sessao.movie.title}</p>
+                <p>{sessao.day.weekday} - {sessao.name}</p>
+            </Footer>
+
+            {/*             /<FooterContainer>
                 <div>
                     <img src={"https://br.web.img2.acsta.net/pictures/22/05/16/17/59/5165498.jpg"} alt="poster" />
                 </div>
@@ -95,7 +113,9 @@ export default function SeatsPage() {
                     <p>Tudo em todo lugar ao mesmo tempo</p>
                     <p>Sexta - 14h00</p>
                 </div>
-            </FooterContainer>
+            </FooterContainer> */}
+
+
 
         </PageContainer>
     )

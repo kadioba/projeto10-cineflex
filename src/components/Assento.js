@@ -14,6 +14,7 @@ export default function Assento(props) {
         if (!props.assentoSelecionado.includes(props.id)) {
             if (props.isAvailable) {
                 props.setAssentoSelecionado([...props.assentoSelecionado, props.id])
+                props.setNumeroAssentoSelecionado([...props.numeroAssentoSelecionado, props.numero])
                 setCorAssento("#1AAE9E")
                 setCorAssentoBorda("#0E7D71")
             }
@@ -24,7 +25,9 @@ export default function Assento(props) {
         }
         else {
             const arrayItemRemovido = props.assentoSelecionado.filter(item => item != props.id);
+            const arrayNumeroRemovido = props.numeroAssentoSelecionado.filter(item => item != props.numero)
             props.setAssentoSelecionado(arrayItemRemovido);
+            props.setNumeroAssentoSelecionado(arrayNumeroRemovido);
             setCorAssento("lightblue")
             setCorAssentoBorda("blue")
         }

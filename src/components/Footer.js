@@ -7,8 +7,7 @@ export default function Footer(props) {
                 <img src={props.posterURL} alt="poster" />
             </div>
             <div>
-                <p>{props.title}</p>
-                <p>Sexta - 14h00</p>
+                {props.children}
             </div>
         </FooterContainer>
     )

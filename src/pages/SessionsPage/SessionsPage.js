@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import React from "react";
 import Secoes from "../../components/Secoes";
+import Footer from "../../components/Footer";
 
 
 export default function SessionsPage() {
@@ -37,14 +38,9 @@ export default function SessionsPage() {
 
             </div>
 
-            <FooterContainer>
-                <div>
-                    <img src={filme.posterURL} alt="poster" />
-                </div>
-                <div>
-                    <p>{filme.title}</p>
-                </div>
-            </FooterContainer>
+            <Footer posterURL={filme.posterURL}>
+                <p>{filme.title}</p>
+            </Footer>
 
         </PageContainer>
     )
