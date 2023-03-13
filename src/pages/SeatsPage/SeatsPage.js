@@ -20,7 +20,6 @@ export default function SeatsPage(props) {
     const [nome, setNome] = useState("");
     const [cpf, setCpf] = useState("");
 
-    console.log(sessao)
 
     const navigate = useNavigate()
 
@@ -105,18 +104,6 @@ export default function SeatsPage(props) {
                 <p>{sessao.movie.title}</p>
                 <p>{sessao.day.weekday} - {sessao.name}</p>
             </Footer>
-
-            {/*             /<FooterContainer>
-                <div>
-                    <img src={"https://br.web.img2.acsta.net/pictures/22/05/16/17/59/5165498.jpg"} alt="poster" />
-                </div>
-                <div>
-                    <p>Tudo em todo lugar ao mesmo tempo</p>
-                    <p>Sexta - 14h00</p>
-                </div>
-            </FooterContainer> */}
-
-
 
         </PageContainer>
     )
