@@ -4,10 +4,29 @@ import React from "react";
 
 export default function Assento(props) {
 
-    const [corAssento, setCorAssento] = React.useState("#C3CFD9")
-    const [corAssentoBorda, setCorAssentoBorda] = React.useState("#808F9D")
+    function corDoAssento() {
+        if (props.assentoSelecionado.includes(props.id)) {
+            return "#1AAE9E"
+        }
+        else if (props.assentoIndisponivel.includes(props.id)) {
+            return "#FBE192"
+        }
+        else {
+            return "#C3CFD9"
+        }
+    }
 
-
+    function corDaBordaAssento() {
+        if (props.assentoSelecionado.includes(props.id)) {
+            return "#0E7D71"
+        }
+        else if (props.assentoIndisponivel.includes(props.id)) {
+            return "#F7C52B"
+        }
+        else {
+            return "#808F9D"
+        }
+    }
 
 
     function selecionarAssento() {
@@ -15,13 +34,10 @@ export default function Assento(props) {
             if (props.isAvailable) {
                 props.setAssentoSelecionado([...props.assentoSelecionado, props.id])
                 props.setNumeroAssentoSelecionado([...props.numeroAssentoSelecionado, props.numero])
-                setCorAssento("#1AAE9E")
-                setCorAssentoBorda("#0E7D71")
             }
             else {
-                alert("Esse assento nao esta disponivel!")
-                setCorAssento("#FBE192")
-                setCorAssentoBorda("#F7C52B")
+                props.setAssentoIndisponivel([...props.assentoIndisponivel, props.id])
+                alert("Esse assento não está disponível")
             }
         }
         else {
@@ -29,21 +45,20 @@ export default function Assento(props) {
             const arrayNumeroRemovido = props.numeroAssentoSelecionado.filter(item => item != props.numero)
             props.setAssentoSelecionado(arrayItemRemovido);
             props.setNumeroAssentoSelecionado(arrayNumeroRemovido);
-            setCorAssento("#C3CFD9")
-            setCorAssentoBorda("#808F9D")
         }
 
 
     }
 
+
     return (
-        <SeatItem onClick={() => selecionarAssento()} corAssentoBorda={corAssentoBorda} corAssento={corAssento} data-test="seat">{props.numero}</SeatItem>
+        <SeatItem onClick={() => selecionarAssento()} corDaBordaAssento={corDaBordaAssento} corDoAssento={corDoAssento} data-test="seat">{props.numero}</SeatItem>
     )
 }
 
 const SeatItem = styled.div`
-    border: 1px solid ${props => props.corAssentoBorda};         // Essa cor deve mudar
-    background-color: ${props => props.corAssento};    // Essa cor deve mudar
+    border: 1px solid ${props => props.corDaBordaAssento};         // Essa cor deve mudar
+    background-color: ${props => props.corDoAssento};    // Essa cor deve mudar
     height: 25px;
     width: 25px;
     border-radius: 25px;
