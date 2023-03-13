@@ -10,10 +10,10 @@ export default function Secoes(props) {
     }
 
     return (
-        <SessionContainer>
+        <SessionContainer data-test="movie-day" >
             {props.weekday} - {props.date}
             <ButtonsContainer>
-                {props.showtimes.map(showtime => <button key={showtime.id} onClick={() => escolherAssento(showtime.id)} >{showtime.name}</button>)}
+                {props.showtimes.map(showtime => <button key={showtime.id} onClick={() => escolherAssento(showtime.id)} data-test="showtime" >{showtime.name}</button>)}
             </ButtonsContainer>
         </SessionContainer>
     )

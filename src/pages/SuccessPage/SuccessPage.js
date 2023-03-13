@@ -13,25 +13,25 @@ export default function SuccessPage(props) {
         <PageContainer>
             <h1>Pedido feito <br /> com sucesso!</h1>
 
-            <TextContainer>
+            <TextContainer data-test="movie-info">
                 <strong><p>Filme e sessão</p></strong>
                 <p>{props.dadosReserva.filme}</p>
                 <p>{props.dadosReserva.dia} - {props.dadosReserva.hora}</p>
             </TextContainer>
 
-            <TextContainer>
+            <TextContainer data-test="seats-info">
                 <strong><p>Ingressos</p></strong>
                 {props.dadosReserva.assentos.map(assento => <p key={assento}>Assento {assento}</p>)}
 
             </TextContainer>
 
-            <TextContainer>
+            <TextContainer data-test="client-info">
                 <strong><p>Comprador</p></strong>
                 <p>Nome: {props.dadosReserva.nome}</p>
                 <p>CPF: {props.dadosReserva.cpf}</p>
             </TextContainer>
 
-            <button onClick={() => voltarParaHome()}>Voltar para Home</button>
+            <button onClick={() => voltarParaHome()} data-test="go-home-btn" >Voltar para Home</button>
 
         </PageContainer>
     )

@@ -36,7 +36,7 @@ export default function Assento(props) {
     }
 
     return (
-        <SeatItem onClick={() => selecionarAssento()} corAssentoBorda={corAssentoBorda} corAssento={corAssento}>{props.numero}</SeatItem>
+        <SeatItem onClick={() => selecionarAssento()} corAssentoBorda={corAssentoBorda} corAssento={corAssento} data-test="seat">{props.numero}</SeatItem>
     )
 }
 

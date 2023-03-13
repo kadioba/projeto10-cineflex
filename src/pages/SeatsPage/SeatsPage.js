@@ -91,16 +91,16 @@ export default function SeatsPage(props) {
             <FormContainer>
                 <form onSubmit={reservarAssentos}>
                     Nome do Comprador:
-                    <input onChange={e => setNome(e.target.value)} type="text" value={nome} />
+                    <input onChange={e => setNome(e.target.value)} type="text" value={nome} data-test="client-name" />
 
                     CPF do Comprador:
-                    <input onChange={e => setCpf(e.target.value)} type="text" value={cpf} />
+                    <input onChange={e => setCpf(e.target.value)} type="text" value={cpf} data-test="client-cpf" />
 
-                    <button type="submit" >Reservar Assento(s)</button>
+                    <button type="submit" data-test="book-seat-btn" >Reservar Assento(s)</button>
                 </form>
             </FormContainer>
 
-            <Footer posterURL={sessao.movie.posterURL}>
+            <Footer posterURL={sessao.movie.posterURL} data-test="footer">
                 <p>{sessao.movie.title}</p>
                 <p>{sessao.day.weekday} - {sessao.name}</p>
             </Footer>
