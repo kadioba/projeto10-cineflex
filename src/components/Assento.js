@@ -4,8 +4,8 @@ import React from "react";
 
 export default function Assento(props) {
 
-    const [corAssento, setCorAssento] = React.useState("lightblue")
-    const [corAssentoBorda, setCorAssentoBorda] = React.useState("blue")
+    const [corAssento, setCorAssento] = React.useState("#C3CFD9")
+    const [corAssentoBorda, setCorAssentoBorda] = React.useState("#808F9D")
 
 
 
@@ -29,8 +29,8 @@ export default function Assento(props) {
             const arrayNumeroRemovido = props.numeroAssentoSelecionado.filter(item => item != props.numero)
             props.setAssentoSelecionado(arrayItemRemovido);
             props.setNumeroAssentoSelecionado(arrayNumeroRemovido);
-            setCorAssento("lightblue")
-            setCorAssentoBorda("blue")
+            setCorAssento("#C3CFD9")
+            setCorAssentoBorda("#808F9D")
         }
 
 
