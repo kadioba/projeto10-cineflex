@@ -38,7 +38,7 @@ export default function SessionsPage() {
 
             </div>
 
-            <Footer posterURL={filme.posterURL} data-test="footer">
+            <Footer posterURL={filme.posterURL}>
                 <p>{filme.title}</p>
             </Footer>
 

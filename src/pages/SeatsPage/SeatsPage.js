@@ -100,7 +100,7 @@ export default function SeatsPage(props) {
                 </form>
             </FormContainer>
 
-            <Footer posterURL={sessao.movie.posterURL} data-test="footer">
+            <Footer posterURL={sessao.movie.posterURL}>
                 <p>{sessao.movie.title}</p>
                 <p>{sessao.day.weekday} - {sessao.name}</p>
             </Footer>
