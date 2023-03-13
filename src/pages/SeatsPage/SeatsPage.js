@@ -79,7 +79,7 @@ export default function SeatsPage(props) {
                     Selecionado
                 </CaptionItem>
                 <CaptionItem>
-                    <CaptionCircle cor={"lightblue"} borda={"blue"} />
+                    <CaptionCircle cor={"#C3CFD9"} borda={"#808F9D"} />
                     Disponível
                 </CaptionItem>
                 <CaptionItem>
