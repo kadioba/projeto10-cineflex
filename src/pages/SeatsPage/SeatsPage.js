@@ -15,7 +15,6 @@ export default function SeatsPage(props) {
     const params = useParams();
     const [sessao, setSessao] = React.useState(null)
     const [assentoSelecionado, setAssentoSelecionado] = React.useState([])
-    const [assentoIndisponivel, setAssentoIndisponivel] = React.useState([])
     const [numeroAssentoSelecionado, setNumeroAssentoSelecionado] = React.useState([])
     const [nome, setNome] = useState("");
     const [cpf, setCpf] = useState("");
@@ -70,7 +69,7 @@ export default function SeatsPage(props) {
             Selecione o(s) assento(s)
 
             <SeatsContainer>
-                {sessao.seats.map(assento => <Assento assentoIndisponivel={assentoIndisponivel} setAssentoIndisponivel={setAssentoIndisponivel} setNumeroAssentoSelecionado={setNumeroAssentoSelecionado} numeroAssentoSelecionado={numeroAssentoSelecionado} assentoSelecionado={assentoSelecionado} setAssentoSelecionado={setAssentoSelecionado} numero={assento.name} id={assento.id} isAvailable={assento.isAvailable} />)}
+                {sessao.seats.map(assento => <Assento setNumeroAssentoSelecionado={setNumeroAssentoSelecionado} numeroAssentoSelecionado={numeroAssentoSelecionado} assentoSelecionado={assentoSelecionado} setAssentoSelecionado={setAssentoSelecionado} numero={assento.name} id={assento.id} isAvailable={assento.isAvailable} />)}
             </SeatsContainer>
 
             <CaptionContainer>

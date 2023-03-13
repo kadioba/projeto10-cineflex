@@ -8,7 +8,7 @@ export default function Assento(props) {
         if (props.assentoSelecionado.includes(props.id)) {
             return "#1AAE9E"
         }
-        else if (props.assentoIndisponivel.includes(props.id)) {
+        else if (!props.isAvailable) {
             return "#FBE192"
         }
         else {
@@ -20,7 +20,7 @@ export default function Assento(props) {
         if (props.assentoSelecionado.includes(props.id)) {
             return "#0E7D71"
         }
-        else if (props.assentoIndisponivel.includes(props.id)) {
+        else if (!props.isAvailable) {
             return "#F7C52B"
         }
         else {
@@ -36,7 +36,6 @@ export default function Assento(props) {
                 props.setNumeroAssentoSelecionado([...props.numeroAssentoSelecionado, props.numero])
             }
             else {
-                props.setAssentoIndisponivel([...props.assentoIndisponivel, props.id])
                 alert("Esse assento não está disponível")
             }
         }
