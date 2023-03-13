@@ -19,6 +19,7 @@ export default function Assento(props) {
                 setCorAssentoBorda("#0E7D71")
             }
             else {
+                alert("Esse assento nao esta disponivel!")
                 setCorAssento("#FBE192")
                 setCorAssentoBorda("#F7C52B")
             }
